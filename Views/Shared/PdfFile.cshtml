@@ -1,0 +1,16 @@
+@using EPiServer.Web.Mvc.Html
+@model AlloyTraining.Models.Media.PdfFile
+@if (Model.RenderPreviewImage)
+{
+    <a href="@Url.ContentUrl(Model.ContentLink)">
+        <figure>
+            @* Requires preview image option to be enabled in CMS settings *@
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/500px-PDF_file_icon.svg.png" style="height:80px;" />
+            <figcaption>@Model.Name</figcaption>
+        </figure>
+    </a>
+}
+else
+{
+    @Html.ContentLink(Model.ContentLink)
+}

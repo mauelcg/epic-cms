@@ -1,0 +1,21 @@
+@model AlloyTraining.Models.Pages.StartPage
+<h1 @Html.EditAttributes(m => m.Heading)>
+    @(Model.Heading ?? Model.Name)
+</h1>
+<div>@Html.PropertyFor(m => m.MainBody)</div>
+<div>@Html.PropertyFor(m => m.MainContentArea, new { CssClass = "row equal-height" })</div>
+<table>
+    <thead>
+        <th>Property Name</th>
+        <th>Property Value</th>
+    </thead>
+    <tbody>
+        @foreach (PropertyData property in Model.Property)
+        {
+            <tr>
+                <td>@property.Name</td>
+                <td>@property.Value</td>
+            </tr>
+        }
+    </tbody>
+</table>

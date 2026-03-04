@@ -1,0 +1,7 @@
+public class ContactBlockViewComponent : BlockComponent<ContactBlock>
+{
+    public override IViewComponentResult Invoke(ContactBlock currentBlock)
+    {
+        return View(currentBlock);
+    }
+}

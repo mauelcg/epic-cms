@@ -1,0 +1,19 @@
+@model AlloyTraining.Models.Pages.AllPropertyTypesPage
+<h1>@Html.PropertyFor(m => m.ChangedBy)</h1>
+<div>@Html.PropertyFor(m => m.EmailString)</div>
+<div>@Html.PropertyFor(m => m.PageTypeName)</div>
+<table>
+    <thead>
+        <th>Property Name</th>
+        <th>Property Value</th>
+    </thead>
+    <tbody>
+        @foreach (PropertyData property in Model.Property)
+        {
+            <tr>
+                <td>@property.Name</td>
+                <td>@property.Value</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,4 @@
+@model AlloyTraining.Models.Pages.EmployeePage
+<h1>@Html.PropertyFor(m => m.BirthDate)</h1>
+<div>@Html.PropertyFor(m => m.HireDate)</div>
+<div>@Html.PropertyFor(m => m.ProductOwner, additionalViewData: new {})</div>
