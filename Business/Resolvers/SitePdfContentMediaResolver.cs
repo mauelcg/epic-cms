@@ -1,6 +1,3 @@
-using EPiServer.Web;
-using System;
-
 public class CustomPdfContentMediaResolver : ContentMediaResolver
 {
     // Override the method that finds the first matching type for an extension

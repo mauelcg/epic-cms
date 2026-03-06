@@ -10,6 +10,8 @@ namespace AlloyTraining.Models.Pages
         GUID = "F56BEFD6-9B80-49E6-8145-6B340CEBA28C",
         GroupName = "Specialized", Order = 10,
         Description = "Homepage for the site")]
+    [SiteStartIcon]
+    [AvailableContentTypes(Include = new[] { typeof(StandardPage) })]
     public class StartPage : SitePageData
     {
         [CultureSpecific]
@@ -37,6 +39,10 @@ namespace AlloyTraining.Models.Pages
         [AllowedTypes(typeof(StandardPage), typeof(BlockData), typeof(ImageData), typeof(ContentFolder), typeof(MediaData), typeof(VideoData))]
         public virtual ContentArea MainContentArea { get; set; }
 
+        [CultureSpecific]
+        [Display(Name = "Footer text", Description = "The footer text will be shown at the bottom of every page.", GroupName = SiteTabNames.SiteSettings, Order = 10)]
+        public virtual string FooterText { get; set; }
+
         [Display(
             Name = "Date list",
             Description = "My property description",
@@ -59,7 +65,7 @@ namespace AlloyTraining.Models.Pages
             Description = "My property description",
             GroupName = SystemTabNames.Content,
             Order = 10)]
-        [SelectOne(SelectionFactoryType = typeof(WorkStatusSelectionFactory))]
+        [SelectOne(SelectionFactoryType = typeof(ThemeSelectionFactory))]
         // [SelectMany()]
         public virtual string WorkStatus { get; set; }
 

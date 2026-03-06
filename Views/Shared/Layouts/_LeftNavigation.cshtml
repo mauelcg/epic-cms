@@ -1,0 +1,16 @@
+@using AlloyTraining.Models.ViewModels
+@using AlloyTraining.Models.Pages
+@model IPageViewmodel<SitePageData>
+
+@{
+    // nest the left navigation inside the root layout
+    Layout = "~/Views/Shared/Layouts/_Root.cshtml";
+}
+<div class="row">
+    <div class="col-md-4">
+        @RenderSection("_LeftNavigationMenu", required: false)
+    </div>
+    <div class="col-md-8">
+        @RenderBody()
+    </div>
+</div>

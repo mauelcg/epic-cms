@@ -1,6 +1,6 @@
 using EPiServer.ServiceLocation;
 
-namespace AlloyTraining.Business.Extensionmethods;
+namespace AlloyTraining.Business.ExtensionMethods;
 
 public static class ContentExtensions
 {

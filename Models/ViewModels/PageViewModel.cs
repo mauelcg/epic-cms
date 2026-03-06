@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using AlloyTraining.Models.Pages;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AlloyTraining.Models.ViewModels;
 

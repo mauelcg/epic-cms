@@ -13,15 +13,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPiServer.CMS" Version="12.29.0" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="12.31.1" />
+    <PackageReference Include="EPiServer.CMS" Version="12.34.2" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="12.34.2" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.12.6" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Search" Version="3.12.6" />
+    <PackageReference Include="EPiServer.Find.Cms" Version="16.7.1" />
     <PackageReference Include="EPiServer.Forms" Version="5.10.6" />
-    <PackageReference Include="EPiServer.Framework" Version="12.21.4" />
+    <PackageReference Include="EPiServer.Framework" Version="12.23.1" />
+    <PackageReference Include="EPiServer.Hosting" Version="12.23.1" />
     <PackageReference Include="EPiServer.Labs.ContentManager" Version="1.2.0" />
     <PackageReference Include="EPiServer.Labs.GridView" Version="1.2.0" />
     <PackageReference Include="EPiServer.PdfPreview" Version="2.1.3" />
-    <PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="12.21.4" />
-    <PackageReference Include="EPiServer.CMS.AspNetCore.Templating" Version="12.21.4" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore.Mvc" Version="12.23.1" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="12.23.1" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore.Templating" Version="12.23.1" />
   </ItemGroup>
 
   <ItemGroup>

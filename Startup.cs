@@ -1,5 +1,6 @@
 using EPiServer.Cms.Shell;
 using EPiServer.Cms.UI.AspNetIdentity;
+using EPiServer.ContentApi.Cms.DependencyInjection;
 using EPiServer.Labs.GridView;
 using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
@@ -37,12 +38,28 @@ public class Startup
         services
             .AddCmsAspNetIdentity<ApplicationUser>()
             .AddCms()
+            .AddFind() // Enable Search and Navigation
             .AddAdminUserRegistration()
             .AddEmbeddedLocalization<Startup>()
             .AddGridView(options =>
             {
                 options.IsViewEnabled = true;
             });
+
+            services.AddContentDeliveryApi(options =>
+            {
+                options.SiteDefinitionApiEnabled = true;
+            }).WithFriendlyUrl();
+
+            services.AddContentSearchApi(options =>
+            {
+                options.MaximumSearchResults = 10;
+            });
+
+            // services.AddContentDeliveryApi(options =>
+            // {
+            //     options.EnableCors = true;
+            // });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -56,6 +73,8 @@ public class Startup
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
+        // Required for Content Search API
+        app.UseCors();
 
         app.UseEndpoints(endpoints =>
         {

@@ -16,6 +16,10 @@ public static class SiteTabNames
     public const string About = "About";
 
     [Display(Order =10)] //
-    [RequiredAccess(AccessLevel.Publish)]
-    public const string SEO = "Search Engine Optimization";
+    [RequiredAccess(AccessLevel.Administer)]
+    public const string SiteSettings = "Site Settings";
+
+    [Display(Order =10)] //
+    [RequiredAccess(AccessLevel.Edit)]
+    public const string SEO = "SEO";
 }

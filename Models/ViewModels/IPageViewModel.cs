@@ -1,6 +1,4 @@
 using AlloyTraining.Models.Pages;
-using EPiServer.Core;
-using System.Collections.Generic;
 
 namespace AlloyTraining.Models.ViewModels;
 
