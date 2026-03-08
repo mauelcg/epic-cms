@@ -11,16 +11,16 @@ using System.Threading.Tasks; // Task
 using System.Globalization; // CultureInfo
 using System; // ArgumentNullException
 
-namespace AlloyTraining.Business.Initializers
+namespace AlloyTraining.Business.Initialization
 {
-    public class AddPagesInitializer : IBlockingFirstRequestInitializer
+    public class AddPagesInitialization : IBlockingFirstRequestInitializer
     {
         public bool CanRunInParallel => false;
 
         protected readonly ISiteDefinitionRepository siteRepo;
         protected readonly IContentRepository repo;
 
-        public AddPagesInitializer(
+        public AddPagesInitialization(
             ISiteDefinitionRepository siteRepo,
             IContentRepository repo)
         {

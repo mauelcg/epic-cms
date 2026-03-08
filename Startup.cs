@@ -1,3 +1,4 @@
+using AlloyTraining.Business.ExtensionMethods;
 using EPiServer.Cms.Shell;
 using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.ContentApi.Cms.DependencyInjection;
@@ -44,7 +45,8 @@ public class Startup
             .AddGridView(options =>
             {
                 options.IsViewEnabled = true;
-            });
+            })
+            .AddTinyMceCustomizations();
 
             services.AddContentDeliveryApi(options =>
             {
