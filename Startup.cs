@@ -1,20 +1,25 @@
+using AlloyTraining.Features.NorthwindPartialRouter;
+using AlloyTraining.Features.NorthwindPartialRouter.Entities;
 using EPiServer.Cms.Shell;
 using EPiServer.Cms.UI.AspNetIdentity;
-using EPiServer.ContentApi.Cms.DependencyInjection;
+using EPiServer.Core.Routing;
 using EPiServer.Labs.GridView;
 using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
+using Microsoft.EntityFrameworkCore;
 
 namespace AlloyTraining;
 
 public class Startup
 {
     private readonly IWebHostEnvironment _webHostingEnvironment;
+    private readonly IConfiguration _configuration;
 
-    public Startup(IWebHostEnvironment webHostingEnvironment)
+    public Startup(IWebHostEnvironment webHostingEnvironment, IConfiguration configuration)
     {
         _webHostingEnvironment = webHostingEnvironment;
+        _configuration = configuration;
     }
 
     public void ConfigureServices(IServiceCollection services)
@@ -35,6 +40,10 @@ public class Startup
 
         // Replace the default ContentMediaResolver with site created type
         services.AddSingleton<ContentMediaResolver, CustomPdfContentMediaResolver>();
+        // For partial routing
+        services.AddSingleton<IPartialRouter, CategoryPartialRouter>();
+        services.AddHttpContextAccessor();
+        // For EPiServer CMS
         services
             .AddCmsAspNetIdentity<ApplicationUser>()
             .AddCms()
@@ -44,22 +53,30 @@ public class Startup
             .AddGridView(options =>
             {
                 options.IsViewEnabled = true;
+            })
+            .AddDbContext<NorthwindContext>(options =>
+            {
+                options.UseLazyLoadingProxies(false);
+                options.UseSqlServer(
+                    _configuration.GetConnectionString("NorthwindDB"),
+                    sqlOptions => sqlOptions.EnableRetryOnFailure()
+                );
             });
 
-            services.AddContentDeliveryApi(options =>
-            {
-                options.SiteDefinitionApiEnabled = true;
-            }).WithFriendlyUrl();
+        services.AddContentDeliveryApi(options =>
+        {
+            options.SiteDefinitionApiEnabled = true;
+        }).WithFriendlyUrl();
 
-            services.AddContentSearchApi(options =>
-            {
-                options.MaximumSearchResults = 10;
-            });
+        services.AddContentSearchApi(options =>
+        {
+            options.MaximumSearchResults = 10;
+        });
 
-            // services.AddContentDeliveryApi(options =>
-            // {
-            //     options.EnableCors = true;
-            // });
+        // services.AddContentDeliveryApi(options =>
+        // {
+        //     options.EnableCors = true;
+        // });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

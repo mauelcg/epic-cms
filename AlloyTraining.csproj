@@ -27,6 +27,11 @@
     <PackageReference Include="EPiServer.CMS.AspNetCore.Mvc" Version="12.23.1" />
     <PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="12.23.1" />
     <PackageReference Include="EPiServer.CMS.AspNetCore.Templating" Version="12.23.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
+    <!-- Pin Castle to prevent transitive version conflicts -->
+    <PackageReference Include="Castle.Core" Version="4.4.1" />
+    <PackageReference Include="Castle.Windsor" Version="5.1.2" />
   </ItemGroup>
 
   <ItemGroup>
