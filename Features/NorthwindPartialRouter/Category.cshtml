@@ -2,6 +2,9 @@
 @using AlloyTraining.Features.NorthwindPartialRouter.Entities;
 @using AlloyTraining.Models.ViewModels
 @model PageViewModel<CategoriesPage>
+@{
+    Layout = "~/Views/Shared/Layouts/_LeftNavigation.cshtml";
+}
 <div class="row">
     <div class="col-12">
         <h2>@Model.CurrentPage.NorthwindCategory.CategoryName</h2>

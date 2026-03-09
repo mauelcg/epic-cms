@@ -1,8 +1,11 @@
 @using AlloyTraining.Features.NorthwindPartialRouter;
 @using AlloyTraining.Models.ViewModels;
 
+@{
+    Layout = "~/Views/Shared/Layouts/_LeftNavigation.cshtml";
+}
 <div class="row">
-    <div class="span12">
+    <div class="col-12">
         <h2>Northwind Categories</h2>
         <ul>
             @foreach (KeyValuePair<string, string> category in Model.CurrentPage.CategoryLinks)
