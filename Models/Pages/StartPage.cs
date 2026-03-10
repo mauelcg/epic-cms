@@ -39,6 +39,9 @@ namespace AlloyTraining.Models.Pages
         [AllowedTypes(typeof(StandardPage), typeof(BlockData), typeof(ImageData), typeof(ContentFolder), typeof(MediaData), typeof(VideoData))]
         public virtual ContentArea MainContentArea { get; set; }
 
+        [AllowedTypes(typeof(ShippersPage))]
+        public virtual ContentReference Shippers { get; set; }
+
         [CultureSpecific]
         [Display(Name = "Footer text", Description = "The footer text will be shown at the bottom of every page.", GroupName = SiteTabNames.SiteSettings, Order = 10)]
         public virtual string FooterText { get; set; }
