@@ -1,0 +1,39 @@
+@using AlloyTraining.Models.Pages
+@model AlloyTraining.Models.ViewModels.ShippersPageViewModel
+
+@if (EPiServer.Editor.PageEditing.PageIsInEditMode)
+{
+    <dvi>
+        Enter the ID of the shipper to use by default:
+        @Html.PropertyFor(m => m.CurrentPage.DefaultShipper)
+    </dvi>
+}
+<table class="table table-ordered table-condensed">
+    <tr>
+        <th>ID</th>
+        <th>Company Name</th>
+        <th>Phone</th>
+        <th>Cost Per Unit</th>
+        <th>Last changed</th>
+    </tr>
+    @foreach (ShipperPage item in Model.Shippers)
+    {
+        <tr>
+            <td>
+                @item.ShipperID
+            </td>
+            <td>
+                @item.CompanyName
+            </td>
+            <td>
+                @item.Phone
+            </td>
+            <td>
+                @item.CostPerUnit
+            </td>
+            <td>
+                @item.Changed
+            </td>
+        </tr>
+    }
+</table>

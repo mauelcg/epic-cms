@@ -12,17 +12,17 @@ namespace AlloyTraining.Controllers
 {
     public abstract class PageControllerBase<T> : PageController<T> where T : SitePageData
     {
-        protected readonly Injected<UISignInManager> UISignInManager;
-        protected readonly IContentLoader loader;
+        protected readonly Injected<UISignInManager> _UISignInManager;
+        protected readonly IContentLoader _loader;
 
         public PageControllerBase(IContentLoader loader)
         {
-            this.loader = loader;
+            _loader = loader;
         }
 
         public async Task<IActionResult> Logout()
         {
-            await UISignInManager.Service.SignOutAsync();
+            await _UISignInManager.Service.SignOutAsync();
             return RedirectToAction("Index");
         }
 
@@ -30,10 +30,10 @@ namespace AlloyTraining.Controllers
         {
             var viewModel = PageViewModel.Create(currentPage);
 
-            viewModel.StartPage = loader.Get<StartPage>(ContentReference.StartPage);
+            viewModel.StartPage = _loader.Get<StartPage>(ContentReference.StartPage);
 
             viewModel.MenuPages = FilterForVisitor.Filter(
-                loader.GetChildren<SitePageData>(ContentReference.StartPage)).Cast<SitePageData>().Where(page => page.VisibleInMenu);
+                _loader.GetChildren<SitePageData>(ContentReference.StartPage)).Cast<SitePageData>().Where(page => page.VisibleInMenu);
 
             viewModel.Section = currentPage.ContentLink.GetSection();
 
