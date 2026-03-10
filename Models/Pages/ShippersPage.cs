@@ -5,5 +5,5 @@ namespace AlloyTraining.Models.Pages;
 [AvailableContentTypes(Availability = Availability.Specific, Include = new[] { typeof(ShipperPage) }, IncludeOn = new[] { typeof(StartPage) })]
 public class ShippersPage : SitePageData
 {
-
+    public virtual int DefaultShipper {get; set; }
 }

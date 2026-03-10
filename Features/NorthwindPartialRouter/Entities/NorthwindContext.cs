@@ -309,7 +309,7 @@ public partial class NorthwindContext : DbContext
 
         modelBuilder.Entity<Shipper>(entity =>
         {
-            entity.Property(e => e.ShipperId).HasColumnName("ShipperID");
+            entity.Property(e => e.ShipperID).HasColumnName("ShipperID");
             entity.Property(e => e.CompanyName)
                 .IsRequired()
                 .HasMaxLength(40);
