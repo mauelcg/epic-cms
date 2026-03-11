@@ -18,6 +18,7 @@ public class Startup
 
     public Startup(IWebHostEnvironment webHostingEnvironment, IConfiguration configuration)
     {
+        AppDomain.CurrentDomain.SetData("DataDirectory", @"D:\shared\episerver-cms");
         _webHostingEnvironment = webHostingEnvironment;
         _configuration = configuration;
     }
