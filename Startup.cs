@@ -18,7 +18,6 @@ public class Startup
 
     public Startup(IWebHostEnvironment webHostingEnvironment, IConfiguration configuration)
     {
-        AppDomain.CurrentDomain.SetData("DataDirectory", @"D:\shared\episerver-cms");
         _webHostingEnvironment = webHostingEnvironment;
         _configuration = configuration;
     }
@@ -27,7 +26,8 @@ public class Startup
     {
         if (_webHostingEnvironment.IsDevelopment())
         {
-            AppDomain.CurrentDomain.SetData("DataDirectory", Path.Combine(_webHostingEnvironment.ContentRootPath, "App_Data"));
+            AppDomain.CurrentDomain.SetData("DataDirectory", Path.Combine(@"D:\shared\episerver-cms", "App_Data"));
+            // AppDomain.CurrentDomain.SetData("DataDirectory", Path.Combine(_webHostingEnvironment.ContentRootPath, "App_Data"));
 
             services.Configure<SchedulerOptions>(options => options.Enabled = false);
         }
