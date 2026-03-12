@@ -1,8 +1,10 @@
+@using Azure.Core
 @using EPiServer.Core
 @using AlloyTraining.Business.ExtensionMethods
 @using AlloyTraining.Models.ViewModels
 @using AlloyTraining.Models.Pages
 @using Microsoft.AspNetCore.Mvc.Razor
+@using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http
 @model IPageViewmodel<SitePageData>
 @{
     HelperResult ItemTemplate(HtmlHelpers.MenuItem item)
@@ -24,15 +26,18 @@
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="@(Model.CurrentPage.ContentLink.CompareToIgnoreWorkID(ContentReference.StartPage) ? "nav-item active"
-                        : "nav-item")">
+                        <li
+                            class="@(Model.CurrentPage.ContentLink.CompareToIgnoreWorkID(ContentReference.StartPage) ? "nav-item active"
+                                                                                                                                                                                                : "nav-item")">
                             @Html.ContentLink(ContentReference.StartPage, routeValues: null, new { @class = "nav-link" })
                         </li>
                         @Html.MenuList(ContentReference.StartPage, ItemTemplate)
                         <li class="nav-item">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <a href="/en/logout" class="nav-link">Log out</a>
+                                <span class="nav-link text-decoration-none link-dark">
+                                    @Html.ContentLink(linkText: "Log Out", action: "Logout")
+                                </span>
                             }
                             else
                             {
