@@ -1,4 +1,3 @@
-
 using AlloyTraining.Models.Pages;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.ServiceLocation;

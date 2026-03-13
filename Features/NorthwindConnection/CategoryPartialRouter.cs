@@ -1,10 +1,10 @@
 using EPiServer.Core.Routing;
 using EPiServer.Core.Routing.Pipeline;
-using AlloyTraining.Features.NorthwindPartialRouter.Entities;
+using AlloyTraining.Features.NorthwindConnection.Entities;
 using Microsoft.EntityFrameworkCore;
 using EPiServer.Web.Routing;
 
-namespace AlloyTraining.Features.NorthwindPartialRouter
+namespace AlloyTraining.Features.NorthwindConnection
 {
     public class CategoryPartialRouter : IPartialRouter<CategoriesPage, Entities.Category>
     {

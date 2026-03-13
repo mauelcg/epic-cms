@@ -1,6 +1,6 @@
-﻿using AlloyTraining.Features.NorthwindPartialRouter.Entities;
+﻿using AlloyTraining.Features.NorthwindConnection.Entities;
 
-namespace AlloyTraining.Features.NorthwindPartialRouter.Entities;
+namespace AlloyTraining.Features.NorthwindConnection.Entities;
 
 public partial class OrderDetail
 {

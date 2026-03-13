@@ -7,7 +7,6 @@ using EPiServer.Shell.Security;
 using EPiServer.Web.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using EPiServer.Web.Routing;
-using EPiServer.Shell;
 using EPiServer.AddOns.Helpers;
 
 
@@ -18,8 +17,6 @@ namespace AlloyTraining.Controllers
         protected readonly Injected<UISignInManager> _UISignInManager;
         protected readonly Injected<IPageRouteHelper> _pageRouteHelper;
         protected readonly IContentLoader _loader;
-
-        public abstract ActionResult Index(T currentPage);
 
         public PageControllerBase(IContentLoader loader)
         {
@@ -41,8 +38,7 @@ namespace AlloyTraining.Controllers
 
             viewModel.StartPage = _loader.Get<StartPage>(ContentReference.StartPage);
 
-            viewModel.MenuPages = FilterForVisitor.Filter(
-                _loader.GetChildren<SitePageData>(ContentReference.StartPage)).Cast<SitePageData>().Where(page => page.VisibleInMenu);
+            viewModel.MenuPages = FilterForVisitor.Filter(_loader.GetChildren<SitePageData>(ContentReference.StartPage)).Cast<SitePageData>().Where(page => page.VisibleInMenu);
 
             viewModel.Section = currentPage.ContentLink.GetSection();
 

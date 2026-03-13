@@ -1,17 +1,18 @@
 using AlloyTraining.Models.Pages;
-using EPiServer;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AlloyTraining.Controllers;
-
-public class ProductPageController : PageControllerBase<ProductPage>
+namespace AlloyTraining.Controllers
 {
-    public ProductPageController(IContentLoader loader) : base(loader)
+    public class ProductPageController : PageControllerBase<ProductPage>
     {
-    }
+        public ProductPageController(IContentLoader loader) : base(loader)
+        {
+        }
 
-    public ActionResult Index(ProductPage currentPage)
-    {
-        return View(CreatePageViewModel(currentPage));
+        public ActionResult Index(ProductPage currentPage)
+        {
+            return View(CreatePageViewModel(currentPage));
+        }
     }
 }
+

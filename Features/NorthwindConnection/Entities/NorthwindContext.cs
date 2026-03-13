@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace AlloyTraining.Features.NorthwindPartialRouter.Entities;
+namespace AlloyTraining.Features.NorthwindConnection.Entities;
 
 public partial class NorthwindContext : DbContext
 {

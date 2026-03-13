@@ -14,7 +14,7 @@ namespace AlloyTraining.Controllers
         {
             var model = new ShippersPageViewModel(currentPage)
             {
-                Shippers = base._loader.GetChildren<ShipperPage>(currentPage.ContentLink)
+                Shippers = _loader.GetChildren<ShipperPage>(currentPage.ContentLink)
             };
             return View(model);
         }

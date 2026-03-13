@@ -1,5 +1,5 @@
-using AlloyTraining.Features.NorthwindPartialRouter;
-using AlloyTraining.Features.NorthwindPartialRouter.Entities;
+using AlloyTraining.Features.NorthwindConnection;
+using AlloyTraining.Features.NorthwindConnection.Entities;
 using EPiServer.Cms.Shell;
 using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Core.Routing;

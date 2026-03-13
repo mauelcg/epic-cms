@@ -11,6 +11,7 @@ namespace AlloyTraining.Controllers
     {
         public StartPageController(IContentLoader loader) : base(loader)
         {}
+
         public ActionResult Index(StartPage currentPage)
         {
             // Implementation of action. You can create your own view model class that you pass to the view or

@@ -8,42 +8,40 @@ using AlloyTraining.Models.Entities;
 
 namespace AlloyTraining.Models.Pages
 {
-    [ContentType(DisplayName = "News", GroupName = "Specialized", Order = 10, Description = "Homepage for the site")]
-    public class NewsPage : PageData
+    [ContentType(DisplayName = "Authentication", GroupName = SiteGroupNames.Base, Order = 10)]
+    public class AuthenticationPage : SitePageData
     {
         [CultureSpecific]
-        [Display(
-            Name = "Birth date",
-            Description = "My property description",
-            GroupName = "Simple Types",
-            Order = 10)]
-
-        public virtual DateTime? BirthDate { get; set; }
+        [Display(Name = "User Name", GroupName = "Simple Types", Order = 10)]
+        public virtual string? UserName { get; set; }
 
         [CultureSpecific]
         [Display(
-            Name = "Hire date",
+            Name = "First Name",
             Description = "My property description",
             GroupName = "Simple Types",
             Order = 10)]
+        public virtual string? FirstName { get; set; }
 
-        public virtual DateTime? HireDate { get; set; }
+        [CultureSpecific]
+        [Display(Name = "First Name", Description = "My property description", GroupName = "Simple Types", Order = 10)]
+        public virtual string? LastName { get; set; }
+
+        [CultureSpecific]
+        [Display(Name = "Email Address", Description = "My property description", GroupName = "Simple Types", Order = 10)]
+        public virtual string? Email { get; set; }
 
         public override void SetDefaultValues(ContentType contentType)
         {
             VisibleInMenu = false;
             StopPublish = DateTime.Now.AddDays(30);
             this[MetaDataProperties.PageChildOrderRule] = FilterSortOrder.Index;
-            BirthDate = DateTime.Now.AddYears(-30);
-            HireDate = DateTime.Now.AddYears(-5);
 
             // applies default values from Admin view
             base.SetDefaultValues(contentType);
         }
 
-        [PropertyDefinitionTypePlugIn(DisplayName = "List of people i.e. IList<Person>",
-        Description = "An editable list of Person instances."
-        )]
+        [PropertyDefinitionTypePlugIn(DisplayName = "List of people i.e. IList<Person>", Description = "An editable list of Person instances.")]
         public class PropertyPersonList : PropertyList<Person>
         {
         }

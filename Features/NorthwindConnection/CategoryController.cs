@@ -5,7 +5,7 @@ using EPiServer.Core.Routing;
 using EPiServer.Find.Helpers;
 using EPiServer.Web.Routing;
 
-namespace AlloyTraining.Features.NorthwindPartialRouter;
+namespace AlloyTraining.Features.NorthwindConnection;
 // by implementing IRenderTemplate<Category>, this becomes
 // the "page template" for a Category entity
 public class CategoryController : Controller, IRenderTemplate<Entities.Category>
@@ -35,6 +35,6 @@ public class CategoryController : Controller, IRenderTemplate<Entities.Category>
         var model = PageViewModel.Create(currentPage);
         model.CurrentPage.NorthwindCategory = category;
 
-        return View("~/Features/NorthwindPartialRouter/Category.cshtml", model);
+        return View("~/Features/NorthwindConnection/Category.cshtml", model);
     }
 }

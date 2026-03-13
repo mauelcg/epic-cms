@@ -4,10 +4,7 @@ using EPiServer.Web;
 
 namespace AlloyTraining.Models.Pages
 {
-    [ContentType(
-        DisplayName = "All Properties",
-        GroupName = "Specialized", Order = 10,
-        Description = "Homepage for the site")]
+    [ContentType(DisplayName = "All Properties", GroupName = "Specialized", Order = 10, Description = "Homepage for the site")]
     public class AllPropertyTypesPage : PageData
     {
         [Display(GroupName = "Simple Types")]

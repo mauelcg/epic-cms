@@ -1,6 +1,6 @@
 using EPiServer.PlugIn;
 using EPiServer.Scheduler;
-using AlloyTraining.Features.NorthwindPartialRouter.Entities;
+using AlloyTraining.Features.NorthwindConnection.Entities;
 using AlloyTraining.Models.Pages;
 using EPiServer.DataAccess;
 using EPiServer.Security;

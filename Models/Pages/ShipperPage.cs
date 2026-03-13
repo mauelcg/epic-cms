@@ -1,8 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using EPiServer.Framework.DataAnnotations;
 
 namespace AlloyTraining.Models.Pages;
 
 [ContentType(DisplayName = "Shipper", Description = "A templateless leaf page node to store shipper data.")]
+[TemplateDescriptor(Name = "Shipper")]
 [SiteImageUrl]
 public class ShipperPage : PageData
 {

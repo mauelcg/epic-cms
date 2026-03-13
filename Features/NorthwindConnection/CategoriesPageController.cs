@@ -1,11 +1,11 @@
 using AlloyTraining.Controllers;
-using AlloyTraining.Features.NorthwindPartialRouter.Entities;
+using AlloyTraining.Features.NorthwindConnection.Entities;
 using AlloyTraining.Models.ViewModels;
 using EPiServer.Web.Routing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace AlloyTraining.Features.NorthwindPartialRouter;
+namespace AlloyTraining.Features.NorthwindConnection;
 
 public class CategoriesPageController : PageControllerBase<CategoriesPage>
 {
@@ -35,6 +35,6 @@ public class CategoriesPageController : PageControllerBase<CategoriesPage>
            model.CurrentPage.CategoryLinks.Add(name, url);
         }
 
-        return View("~/Features/NorthwindPartialRouter/CategoriesPage.cshtml", model);
+        return View("~/Features/NorthwindConnection/CategoriesPage.cshtml", model);
     }
 }

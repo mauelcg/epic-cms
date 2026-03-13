@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlloyTraining.Features.NorthwindPartialRouter.Entities;
+namespace AlloyTraining.Features.NorthwindConnection.Entities;
 
 public partial class Category
 {

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using AlloyTraining.Business.Factories;
+using EPiServer.Framework.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
 
@@ -10,8 +11,9 @@ namespace AlloyTraining.Models.Pages
         GUID = "F56BEFD6-9B80-49E6-8145-6B340CEBA28C",
         GroupName = "Specialized", Order = 10,
         Description = "Homepage for the site")]
+    [TemplateDescriptor(Name = "Start")]
     [SiteStartIcon]
-    [AvailableContentTypes(Include = new[] { typeof(StandardPage) })]
+    [AvailableContentTypes(Include = new[] { typeof(StandardPage), typeof(AuthenticationPage) })]
     public class StartPage : SitePageData
     {
         [CultureSpecific]
@@ -41,6 +43,8 @@ namespace AlloyTraining.Models.Pages
 
         [AllowedTypes(typeof(ShippersPage))]
         public virtual ContentReference Shippers { get; set; }
+        [AllowedTypes(typeof(AuthenticationPage))]
+        public virtual PageReference AuthenticationPageLink { get; set; }
 
         [CultureSpecific]
         [Display(Name = "Footer text", Description = "The footer text will be shown at the bottom of every page.", GroupName = SiteTabNames.SiteSettings, Order = 10)]

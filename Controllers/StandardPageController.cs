@@ -9,7 +9,7 @@ namespace AlloyTraining.Controllers
         {
         }
 
-        public IActionResult Index(StandardPage currentPage)
+        public ActionResult Index(StandardPage currentPage)
         {
             return View(CreatePageViewModel(currentPage));
         }

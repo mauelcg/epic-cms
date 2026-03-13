@@ -1,6 +1,6 @@
 using AlloyTraining.Models.Pages;
 
-namespace AlloyTraining.Features.NorthwindPartialRouter
+namespace AlloyTraining.Features.NorthwindConnection
 {
     [ContentType(DisplayName = "Categories", GroupName = SiteGroupNames.Specialized,
         GUID = "ba557e27-433f-4cf8-8eb7-c7b58f761d74",
