@@ -1,8 +1,8 @@
-# Empty CMS template
+# Experimental EPiServer CMS Implementation
 
 ## How to run
 
-Chose one of the following options to get started. 
+Chose one of the following options to get started.
 
 ### Windows
 
