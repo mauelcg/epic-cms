@@ -4,7 +4,9 @@ using AlloyTraining.Features.NorthwindPartialRouter.Entities;
 using AlloyTraining.Models.Pages;
 using EPiServer.DataAccess;
 using EPiServer.Security;
+using System.Security.Principal;
 using EPiServer.Web;
+using EPiServer.ServiceLocation;
 
 namespace AlloyTraining.Business.ScheduledJobs;
 
@@ -31,6 +33,14 @@ public class ImportShippersScheduledJob : ScheduledJobBase
     }
     public override string Execute()
     {
+        // Important: Set security context
+        var identity = new GenericIdentity("Scheduled Job Demo");
+        var principal = new GenericPrincipal(identity, new[] { "Administrators", "CmsAdmins" });
+
+        // Use PrincipalAccessor to set the user for the current scope
+        var principalAccessor = ServiceLocator.Current.GetInstance<IPrincipalAccessor>();
+        principalAccessor.Principal = principal;
+
         var site = _siteDefinitionRepo.List().FirstOrDefault();
         if (site == null)
         {
