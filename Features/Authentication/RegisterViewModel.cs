@@ -1,17 +1,28 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AlloyTraining.Models.ViewModels
+namespace AlloyTraining.Features.Authentication
 {
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [MinLength(3)]
+        [Display(Name = "User Name")]
+        public string Username { get; set; }
 
         [Required]
-        [Display(Name = "Username")]
-        public string Username { get; set; }
+        [StringLength(50)]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email Address")]
+        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

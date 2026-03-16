@@ -1,101 +1,127 @@
-<html lang="en">
+@model AlloyTraining.Features.Authentication.RegisterViewModel
 
-<head id="Head1" runat="server">
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/Util/images/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,nofollow">
     <link type="text/css" rel="stylesheet" href="/Util/styles/login.css">
+    <title>Sign Up</title>
 </head>
-
 <body class="epi-workspace">
 
     <div class="top-bar">
         <img src="/Util/images/brand-logo.svg" alt="logo" class="logo">
         <span class="product-name">Optimizely</span>
     </div>
-    <form action="/auth/register" method="post">
-        <div id="RegisterControl" class="js-login-wrapper login-wrapper img3">
-            <div class="modal">
+
+    <div id="RegisterControl" class="js-login-wrapper login-wrapper img3">
+        <div class="modal">
+
+            @* asp-action targets the [HttpPost("/auth/register")] action *@
+            <form asp-action="Register" asp-controller="Authentication" method="post">
+                @Html.AntiForgeryToken()
+
                 <ol class="clearfix">
-                    <li class="login-header-container"><span class="login-header">Sign up</span></li>
+                    <li class="login-header-container">
+                        <span class="login-header">Sign up</span>
+                    </li>
+
+                    @* Summary of all model-level errors *@
                     <li>
                         <div class="text--error">
+                            @if (!ViewData.ModelState.IsValid)
+                            {
+                                <ul>
+                                    @foreach (var error in ViewData.ModelState.Values
+                                                  .SelectMany(v => v.Errors))
+                                    {
+                                        <li>@error.ErrorMessage</li>
+                                    }
+                                </ul>
+                            }
                         </div>
                     </li>
+
                     <li>
-                        <label for="UserName">User Name</label>
-                        <input name="UserName" type="text" id="UserName" autofocus="" autocomplete="off">
+                        <label asp-for="Username"></label>
+                        <input asp-for="Username" type="text" autocomplete="off" autofocus>
+                        <span asp-validation-for="Username" class="text--error"></span>
                     </li>
+
                     <li>
-                        <label for="FirstName">First Name</label>
-                        <input name="FirstName" type="text" id="FirstName" autofocus="" autocomplete="off">
+                        <label asp-for="FirstName"></label>
+                        <input asp-for="FirstName" type="text" autocomplete="off">
+                        <span asp-validation-for="FirstName" class="text--error"></span>
                     </li>
+
                     <li>
-                        <label for="LastName">Last Name</label>
-                        <input name="LastName" type="text" id="LastName" autofocus="" autocomplete="off">
+                        <label asp-for="LastName"></label>
+                        <input asp-for="LastName" type="text" autocomplete="off">
+                        <span asp-validation-for="LastName" class="text--error"></span>
                     </li>
+
                     <li>
-                        <label for="Email">Email Address</label>
-                        <input name="Email" type="text" id="Email" autofocus="" autocomplete="off">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" type="text" autocomplete="off">
+                        <span asp-validation-for="Email" class="text--error"></span>
                     </li>
+
                     <li>
-                        <label for="Password">Password</label>
-                        <input name="Password" type="password" id="Password" autocomplete="off">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" type="password" autocomplete="off">
+                        <span asp-validation-for="Password" class="text--error"></span>
                     </li>
+
                     <li>
-                        <label for="ConfirmPassword">Confirm Password</label>
-                        <input name="ConfirmPassword" type="password" id="ConfirmPassword" autocomplete="off">
+                        <label asp-for="ConfirmPassword"></label>
+                        <input asp-for="ConfirmPassword" type="password" autocomplete="off">
+                        <span asp-validation-for="ConfirmPassword" class="text--error"></span>
                     </li>
+
                     <li>
-                        <input type="submit" name="Submit" value="Sign up" id="Submit" class="epi-button-child-item">
+                        <button type="submit" id="Submit" class="epi-button-child-item">
+                            Sign up
+                        </button>
                     </li>
+
                     <li>
                         <p class="text--small">
-                            <a href="#" onclick="toggleCookieText(); return false;">When you log in, cookies will be
-                                used.</a>
+                            <a href="#" onclick="toggleCookieText(); return false;">
+                                When you log in, cookies will be used.
+                            </a>
+                        </p>
+                        <div id="cookieInfoPanel" class="cookie-information">
+                            <p class="text--small">
+                                A cookie containing login information will be sent to your web browser.
+                                If you do not want to receive cookies, you will be unable to log into the website.
                             </p>
-                            <div id="cookieInfoPanel" class="cookie-information">
-                                <p class="text--small">
-                                    A cookie containing login information will be sent to your web browser. If you do not
-                                    want to receive cookies, you will be unable to log into the website.
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <input id="RetunrUrl" name="ReturnUrl" type="hidden">
-                        </li>
-                    </ol>
-                </div>
-            </div>
-            <input name="__RequestVerificationToken" type="hidden"
-                   value="CfDJ8DGFDNcjkyBEjueu9Ke-GTekHKaXaMwaamxTeEmTLgQL-9Di-HkD7CDIQo2ol4y_XjcTW-FIYcoZhSQ2EKzOre9FQWYNbuC5iv3_B_tiolvhqfRmwhS5_39o3YQRCqVHiBZj1NBMY1BGhr4gvlEp1zc">
-        </form>
-        <script>
-                var classes = [' img1', ' img2', ' img3'];
-                document.getElementById("RegisterControl").className += classes[Math.floor(Math.random() * classes.length)]
+                        </div>
+                    </li>
+                </ol>
+            </form>
 
-                function toggleCookieText()
-                {
-                    document.getElementById("cookieInfoPanel").classList.toggle("is-visible");
-                    return false;
-                }
+        </div>
+    </div>
 
-                document.getElementById("Submit").onclick = function ()
-                {
-                    if (window.location.hash && window.location.hash.length > 1)
-                    {
-                        var encodedHash = encodeURIComponent(window.location.hash.substr(1));
-                        var expiresDate = new Date();
-                        expiresDate.setTime(expiresDate.getTime() + (5 * 60 * 1000));
-                        document.cookie = 'epihash=' + encodedHash + '; path=/; expires=' + expiresDate.toGMTString();
-                    }
-                }
-        </script>
-        <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+    @* jQuery + unobtrusive validation (include once in _Layout or here) *@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
+    <script>
+        // Randomise background image (mirrors original behaviour)
+        var classes = [' img1', ' img2', ' img3'];
+        document.getElementById("RegisterControl").className +=
+            classes[Math.floor(Math.random() * classes.length)];
 
-    </body>
-
+        function toggleCookieText() {
+            document.getElementById("cookieInfoPanel").classList.toggle("is-visible");
+            return false;
+        }
+    </script>
+</body>
 </html>
