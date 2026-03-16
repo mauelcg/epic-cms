@@ -52,6 +52,7 @@ public class Startup
             .AddFind() // Enable Search and Navigation
             .AddAdminUserRegistration()
             .AddEmbeddedLocalization<Startup>()
+            .AddResponseCaching() // For dynamic content
             .AddGridView(options =>
             {
                 options.IsViewEnabled = true;
@@ -87,7 +88,19 @@ public class Startup
         {
             app.UseDeveloperExceptionPage();
         }
-
+        // Dynamic files caching (additional)
+        app.UseResponseCaching();
+        app.Use(async (context, next) =>
+        {
+            context.Response.GetTypedHeaders().CacheControl = new CacheControlHeaderValue()
+            {
+                Public = true,
+                MaxAge = TimeSpan.FromHours(2)
+            };
+            context.Response.Headers[HeaderNames.Vary] = new string[] { "Accept-Encoding" };
+            await next();
+        });
+        // Static files caching
         app.UseStaticFiles(
             new StaticFileOptions
             {
