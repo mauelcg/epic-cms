@@ -8,6 +8,7 @@ using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 
 namespace AlloyTraining;
 
@@ -87,7 +88,19 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
-        app.UseStaticFiles();
+        app.UseStaticFiles(
+            new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    // Caching duration here
+                    // Seconds per minute * Minutes per hour * Hours per day * Days per year
+                    const int seconds = 60 * 60 * 24 * 365;
+                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = $"public,max-age={seconds}";
+                    // For improvements (e.g. busting unversioned files) see here:http://madkristensen.net/post/cache-busting-in-aspnet
+                }
+            }
+        );
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
