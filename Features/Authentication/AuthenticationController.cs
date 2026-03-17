@@ -1,40 +1,29 @@
 using Microsoft.AspNetCore.Identity;
-using AlloyTraining.Models.ViewModels;
 using EPiServer.Cms.UI.AspNetIdentity;
 using Microsoft.AspNetCore.Mvc;
 using AlloyTraining.Models.Pages;
-using EPiServer.ServiceLocation;
-using EPiServer.Web.Routing;
-using EPiServer.AddOns.Helpers;
 using AlloyTraining.Controllers;
-using EPiServer.Find.Helpers;
+using EPiServer.Shell.Security;
 
 namespace AlloyTraining.Features.Authentication
 {
     public class AuthenticationController : PageControllerBase<AuthenticationPage>
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UIUserProvider _uiUserProvider;
+        private readonly UIRoleProvider _uiRoleProvider;
+        private readonly UISignInManager _uiSignInManager;
 
-        public AuthenticationController(IContentLoader contentLoader, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager) : base(contentLoader)
+        public AuthenticationController(IContentLoader contentLoader, UIUserProvider uiUserProvider, UISignInManager uISignInManager, UIRoleProvider uIRoleProvider) : base(contentLoader)
         {
-            _signInManager = signInManager;
-            _userManager = userManager;
+            _uiUserProvider = uiUserProvider;
+            _uiSignInManager = uISignInManager;
+            _uiRoleProvider = uIRoleProvider;
         }
 
-
         [HttpGet("/auth")]
-        public ActionResult Index(AuthenticationPage currentPage)
+        public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                var current = _pageRouteHelper.Service.Page;
-                return Redirect("/");
-            }
-            else
-            {
-                return Redirect("/auth/login");
-            }
+            return User.Identity.IsAuthenticated ? Redirect("/") : Redirect("/auth/login");
         }
 
         [HttpGet("/auth/login")]
@@ -46,19 +35,20 @@ namespace AlloyTraining.Features.Authentication
         [HttpPost("/auth/login")]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-            var result = await _signInManager.PasswordSignInAsync(
-                model.Username,
-                model.Password,
-                model.RememberMe,
-                false);
+            if (!ModelState.IsValid)
+            {
+                return View("~/Features/Authentication/Login.cshtml", model);
+            }
 
-            Console.WriteLine("Success");
+            var success = await _uiSignInManager.SignInAsync(model.Username, model.Password);
 
-            if (result.Succeeded)
+            if (success)
+            {
                 return Redirect("/");
+            }
 
-            ModelState.AddModelError("", "Invalid login");
-            return View(model);
+            ModelState.AddModelError("", "Invalid username or password.");
+            return View("~/Features/Authentication/Login.cshtml", model);
         }
 
         [HttpGet("/auth/register")]
@@ -70,22 +60,40 @@ namespace AlloyTraining.Features.Authentication
         [HttpPost("/auth/register")]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("~/Features/Authentication/Register.cshtml", model);
+            }
+
             var user = new ApplicationUser
             {
-                UserName = model.Email,
-                Email = model.Email
+                UserName = model.Username,
+                Email = model.Email,
+                // Map extra profile fields if your ApplicationUser exposes them:
+                // FirstName = model.FirstName,
+                // LastName  = model.LastName,
             };
 
-            var result = await _userManager.CreateAsync(user, model.Password);
+            var result = await _uiUserProvider.CreateUserAsync(user.UserName, model.Password, user.Email, null, null, false);
 
-            if (result.Succeeded)
+            if (result.Status == UIUserCreateStatus.Success)
+            {
+                // Optionally assign a role
+                await _uiRoleProvider.AddUserToRolesAsync(result.User.Username, new[] { "WebEditors" });
                 return Redirect("/auth/login");
+            }
 
-            foreach (var error in result.Errors)
-                ModelState.AddModelError("", error.Description);
+            // Map UIUserCreateStatus errors back to ModelState
+            ModelState.AddModelError("", result.Status switch
+            {
+                UIUserCreateStatus.DuplicateUserName => "Username already exists.",
+                UIUserCreateStatus.DuplicateEmail => "Email already registered.",
+                UIUserCreateStatus.InvalidPassword => "Password does not meet requirements.",
+                UIUserCreateStatus.InvalidUserName => "Username is invalid.",
+                _ => "Registration failed. Please try again."
+            });
 
-            return View(model);
+            return View("~/Features/Authentication/Register.cshtml", model);
         }
     }
 }
-
