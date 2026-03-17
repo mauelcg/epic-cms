@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlloyTraining.Features.Authentication
 {
-    public class AuthenticationController : PageControllerBase<AuthenticationPage>
+    public class AuthenticationController : PageControllerBase<SitePageData>
     {
         private readonly UIUserProvider _uiUserProvider;
         private readonly UIRoleProvider _uiRoleProvider;

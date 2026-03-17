@@ -19,7 +19,7 @@ namespace AlloyTraining.Models.Pages
         Description = "Homepage for the site")]
     [TemplateDescriptor(Name = "Start")]
     [SiteStartIcon]
-    [AvailableContentTypes(Include = new[] { typeof(StandardPage), typeof(AuthenticationPage) })]
+    [AvailableContentTypes(Include = new[] { typeof(StandardPage) })]
     public class StartPage : SitePageData
     {
         [CultureSpecific]
@@ -49,8 +49,6 @@ namespace AlloyTraining.Models.Pages
 
         [AllowedTypes(typeof(ShippersPage))]
         public virtual ContentReference Shippers { get; set; }
-        [AllowedTypes(typeof(AuthenticationPage))]
-        public virtual PageReference AuthenticationPageLink { get; set; }
 
         [CultureSpecific]
         [Display(Name = "Footer text", Description = "The footer text will be shown at the bottom of every page.", GroupName = SiteTabNames.SiteSettings, Order = 10)]

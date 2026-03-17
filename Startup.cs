@@ -4,16 +4,12 @@
 // </copyright>
 // -------------------------------------------------------------------------------------------------
 
-using AlloyTraining.Features.NorthwindConnection;
-using AlloyTraining.Features.NorthwindConnection.Entities;
 using EPiServer.Cms.Shell;
 using EPiServer.Cms.UI.AspNetIdentity;
-using EPiServer.Core.Routing;
 using EPiServer.Labs.GridView;
 using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 
 namespace AlloyTraining;
@@ -47,10 +43,10 @@ public class Startup
         });
 
         // Replace the default ContentMediaResolver with site created type
-        services.AddSingleton<ContentMediaResolver, CustomPdfContentMediaResolver>();
+        // services.AddSingleton<ContentMediaResolver, CustomPdfContentMediaResolver>();
         // For partial routing
-        services.AddSingleton<IPartialRouter, CategoryPartialRouter>();
-        services.AddHttpContextAccessor();
+        // services.AddSingleton<IPartialRouter, CategoryPartialRouter>();
+        // services.AddHttpContextAccessor();
         // For EPiServer CMS
         services
             .AddCmsAspNetIdentity<ApplicationUser>()
@@ -62,13 +58,6 @@ public class Startup
             .AddGridView(options =>
             {
                 options.IsViewEnabled = true;
-            })
-            .AddDbContext<NorthwindContext>(options =>
-            {
-                options.UseLazyLoadingProxies(false);
-                options.UseSqlServer(
-                    _configuration.GetConnectionString("NorthwindDB"),
-                    sqlOptions => sqlOptions.EnableRetryOnFailure());
             });
 
         services.AddContentDeliveryApi(options =>

@@ -40,7 +40,7 @@ namespace AlloyTraining.Business.ExtensionMethods
 
             UrlBuilder pageURLBuilder = new UrlBuilder(page.LinkURL);
 
-            //UrlRewriteProvider.ConvertToExternal(pageURLBuilder, page.PageLink, UTF8Encoding.UTF8);
+            // UrlRewriteProvider.ConvertToExternal(pageURLBuilder, page.PageLink, UTF8Encoding.UTF8);
 
             string pageURL = pageURLBuilder.ToString();
 
