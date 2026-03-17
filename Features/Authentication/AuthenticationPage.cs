@@ -16,11 +16,7 @@ namespace AlloyTraining.Models.Pages
         public virtual string? UserName { get; set; }
 
         [CultureSpecific]
-        [Display(
-            Name = "First Name",
-            Description = "My property description",
-            GroupName = "Simple Types",
-            Order = 10)]
+        [Display(Name = "First Name", Description = "My property description", GroupName = "Simple Types", Order = 10)]
         public virtual string? FirstName { get; set; }
 
         [CultureSpecific]

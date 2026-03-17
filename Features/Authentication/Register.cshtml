@@ -1,4 +1,5 @@
 @model AlloyTraining.Features.Authentication.RegisterViewModel
+@using Microsoft.AspNetCore.Mvc.ModelBinding
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,8 +22,7 @@
     <div id="RegisterControl" class="js-login-wrapper login-wrapper img3">
         <div class="modal">
 
-            @* asp-action targets the [HttpPost("/auth/register")] action *@
-            <form asp-action="Register" asp-controller="Authentication" method="post">
+            <form action="/auth/register" method="post">
                 @Html.AntiForgeryToken()
 
                 <ol class="clearfix">
@@ -32,96 +32,132 @@
 
                     @* Summary of all model-level errors *@
                     <li>
-                        <div class="text--error">
-                            @if (!ViewData.ModelState.IsValid)
+                        @foreach (var kvp in ViewData.ModelState)
+                        {
+                            if (kvp.Key.Equals(""))
                             {
-                                <ul>
-                                    @foreach (var error in ViewData.ModelState.Values
-                                                  .SelectMany(v => v.Errors))
-                                    {
-                                        <li>@error.ErrorMessage</li>
-                                    }
-                                </ul>
+                                @foreach (var error in kvp.Value.Errors)
+                                {
+                                    <span class="text--error">
+                                        @error.ErrorMessage
+                                    </span>
+                                }
                             }
-                        </div>
+                        }
                     </li>
 
                     <li>
-                        <label asp-for="Username"></label>
-                        <input asp-for="Username" type="text" autocomplete="off" autofocus>
+                        <label for="Username">User Name</label>
+                        <input name="Username" type="text" autocomplete="off" autofocus>
                         <span asp-validation-for="Username" class="text--error"></span>
+                        @foreach (var kvp in ViewData.ModelState)
+                        {
+                            if (kvp.Key.Equals("Username"))
+                            {
+                                @foreach (var error in kvp.Value.Errors)
+                                {
+                                    <span class="text--error text--small">@error.ErrorMessage</span>
+                                }
+                            }
+                        }
                     </li>
 
                     <li>
-                        <label asp-for="FirstName"></label>
-                        <input asp-for="FirstName" type="text" autocomplete="off">
-                        <span asp-validation-for="FirstName" class="text--error"></span>
+                        <label for="FirstName">First Name</label>
+                        <input name="FirstName" type="text" autocomplete="off">
+                        @foreach (var kvp in ViewData.ModelState)
+                        {
+                            if (kvp.Key.Equals("FirstName"))
+                            {
+                                @foreach (var error in kvp.Value.Errors)
+                                {
+                                    <span class="text--error text--small">@error.ErrorMessage</span>
+                                }
+                            }
+                        }
                     </li>
 
                     <li>
-                        <label asp-for="LastName"></label>
-                        <input asp-for="LastName" type="text" autocomplete="off">
-                        <span asp-validation-for="LastName" class="text--error"></span>
+                        <label for="LastName">Last Name</label>
+                        <input name="LastName" type="text" autocomplete="off">
+                        @foreach (var kvp in ViewData.ModelState)
+                        {
+                            if (kvp.Key.Equals("LastName"))
+                            {
+                                @foreach (var error in kvp.Value.Errors)
+                                {
+                                    <span class="text--error text--small">@error.ErrorMessage</span>
+                                }
+                            }
+                        }
                     </li>
 
                     <li>
-                        <label asp-for="Email"></label>
-                        <input asp-for="Email" type="text" autocomplete="off">
-                        <span asp-validation-for="Email" class="text--error"></span>
+                        <label for="Email">Email</label>
+                        <input name="Email" type="text" autocomplete="off">
+                        @foreach (var kvp in ViewData.ModelState)
+                        {
+                            if (kvp.Key.Equals("Email"))
+                            {
+                                @foreach (var error in kvp.Value.Errors)
+                                {
+                                    <span class="text--error text--small">@error.ErrorMessage</span>
+                                }
+                            }
+                        }
                     </li>
 
                     <li>
-                        <label asp-for="Password"></label>
-                        <input asp-for="Password" type="password" autocomplete="off">
-                        <span asp-validation-for="Password" class="text--error"></span>
+                        <label for="Password">Password</label>
+                        <input name="Password" type="password" autocomplete="off">
+                        @foreach (var kvp in ViewData.ModelState)
+                        {
+                            if (kvp.Key.Equals("Password"))
+                            {
+                                @foreach (var error in kvp.Value.Errors)
+                                {
+                                    <span class="text--error text--small">@error.ErrorMessage</span>
+                                }
+                            }
+                        }
                     </li>
 
                     <li>
-                        <label asp-for="ConfirmPassword"></label>
-                        <input asp-for="ConfirmPassword" type="password" autocomplete="off">
-                        <span asp-validation-for="ConfirmPassword" class="text--error"></span>
+                        <label for="ConfirmPassword">Confirm Password</label>
+                        <input name="ConfirmPassword" type="password" autocomplete="off">
+                        @foreach (var kvp in ViewData.ModelState)
+                        {
+                            if (kvp.Key.Equals("ConfirmPassword"))
+                            {
+                                @foreach (var error in kvp.Value.Errors)
+                                {
+                                    <span class="text--error text--small">@error.ErrorMessage</span>
+                                }
+                            }
+                        }
                     </li>
 
                     <li>
-                        <button type="submit" id="Submit" class="epi-button-child-item">
-                            Sign up
-                        </button>
+                        <input type="submit" name="Submit" value="Sign up" id="Submit" class="epi-button-child-item">
                     </li>
 
                     <li>
                         <p class="text--small">
-                            <a href="#" onclick="toggleCookieText(); return false;">
-                                When you log in, cookies will be used.
+                            <a href="/auth/login">
+                                I already have an account.
                             </a>
                         </p>
-                        <div id="cookieInfoPanel" class="cookie-information">
-                            <p class="text--small">
-                                A cookie containing login information will be sent to your web browser.
-                                If you do not want to receive cookies, you will be unable to log into the website.
-                            </p>
-                        </div>
                     </li>
                 </ol>
             </form>
-
         </div>
     </div>
 
-    @* jQuery + unobtrusive validation (include once in _Layout or here) *@
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-
     <script>
-        // Randomise background image (mirrors original behaviour)
-        var classes = [' img1', ' img2', ' img3'];
-        document.getElementById("RegisterControl").className +=
-            classes[Math.floor(Math.random() * classes.length)];
-
-        function toggleCookieText() {
-            document.getElementById("cookieInfoPanel").classList.toggle("is-visible");
-            return false;
-        }
+            // Randomise background image (mirrors original behaviour)
+            var classes = [' img1', ' img2', ' img3'];
+            document.getElementById("RegisterControl").className += classes[Math.floor(Math.random() * classes.length)];
     </script>
 </body>
+
 </html>

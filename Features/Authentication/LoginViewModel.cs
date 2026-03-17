@@ -4,11 +4,11 @@ namespace AlloyTraining.Features.Authentication
 {
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Username is required.")]
         [Display(Name = "Username or Email")]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password is required.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
