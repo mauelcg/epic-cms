@@ -1,3 +1,9 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="ContentExtensions.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using EPiServer.ServiceLocation;
 
 namespace AlloyTraining.Business.ExtensionMethods;

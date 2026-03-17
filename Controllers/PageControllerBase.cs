@@ -1,14 +1,19 @@
-using AlloyTraining.Models.Pages;
+// -------------------------------------------------------------------------------------------------
+// <copyright file="PageControllerBase.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using AlloyTraining.Business.ExtensionMethods;
+using AlloyTraining.Models.Pages;
 using AlloyTraining.Models.ViewModels;
+using EPiServer.AddOns.Helpers;
 using EPiServer.Filters;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.Security;
 using EPiServer.Web.Mvc;
-using Microsoft.AspNetCore.Mvc;
 using EPiServer.Web.Routing;
-using EPiServer.AddOns.Helpers;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace AlloyTraining.Controllers
 {

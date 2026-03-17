@@ -1,5 +1,8 @@
-using EPiServer.Core;
-using EPiServer.DataAnnotations;
+// -------------------------------------------------------------------------------------------------
+// <copyright file="AnyFile.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
 
 namespace AlloyTraining.Models.Media
 {

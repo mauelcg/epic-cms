@@ -1,3 +1,9 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="StartPage.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using System.ComponentModel.DataAnnotations;
 using AlloyTraining.Business.Factories;
 using EPiServer.Framework.DataAnnotations;
@@ -76,7 +82,6 @@ namespace AlloyTraining.Models.Pages
         // [SelectMany()]
         public virtual string WorkStatus { get; set; }
 
-
         // Experimental
         [UIHint(UIHint.Textarea)]
         [UIHint(UIHint.PreviewableText)]
@@ -84,7 +89,6 @@ namespace AlloyTraining.Models.Pages
         [StringLength(50, MinimumLength = 5)]
         [Display(GroupName = SiteTabNames.Contact)]
         public virtual string Phone { get; set; }
-
 
         // Experimental
         [UIHint(UIHint.Textarea)]

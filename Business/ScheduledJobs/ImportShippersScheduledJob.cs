@@ -1,8 +1,14 @@
-using EPiServer.PlugIn;
-using EPiServer.Scheduler;
+// -------------------------------------------------------------------------------------------------
+// <copyright file="ImportShippersScheduledJob.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using AlloyTraining.Features.NorthwindConnection.Entities;
 using AlloyTraining.Models.Pages;
 using EPiServer.DataAccess;
+using EPiServer.PlugIn;
+using EPiServer.Scheduler;
 using EPiServer.Security;
 using EPiServer.Web;
 
@@ -21,14 +27,14 @@ public class ImportShippersScheduledJob : ScheduledJobBase
         _db = db;
         _siteDefinitionRepo = siteDefinitionrepo;
     }
+
     public ImportShippersScheduledJob()
     {
         IsStoppable = true;
     }
-    public override void Stop()
-    {
-        _stopSignaled = true;
-    }
+
+    public override void Stop() => _stopSignaled = true;
+
     public override string Execute()
     {
         var site = _siteDefinitionRepo.List().FirstOrDefault();
@@ -36,6 +42,7 @@ public class ImportShippersScheduledJob : ScheduledJobBase
         {
             return "Error: No site definition found.";
         }
+
         // Provide explicit 'Current' page context to be used by ContentReference.StartPage as background jobs do not have this context
         SiteDefinition.Current = site;
 
@@ -59,6 +66,7 @@ public class ImportShippersScheduledJob : ScheduledJobBase
                 return "'Import Shippers' job was stopped.";
             }
         }
+
         if (shippersImported == 0)
         {
             return "No new shippers to import.";

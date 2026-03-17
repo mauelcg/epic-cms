@@ -1,3 +1,9 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="VideoFile.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using EPiServer.Framework.DataAnnotations;
 
 namespace AlloyTraining.Models.Media

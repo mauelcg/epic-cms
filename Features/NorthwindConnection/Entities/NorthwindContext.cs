@@ -1,4 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// -------------------------------------------------------------------------------------------------
+// <copyright file="NorthwindContext.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
+using Microsoft.EntityFrameworkCore;
 
 namespace AlloyTraining.Features.NorthwindConnection.Entities;
 

@@ -1,5 +1,11 @@
-using EPiServer.Framework.DataAnnotations;
+// -------------------------------------------------------------------------------------------------
+// <copyright file="PdfFile.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using System.ComponentModel.DataAnnotations;
+using EPiServer.Framework.DataAnnotations;
 
 namespace AlloyTraining.Models.Media;
 

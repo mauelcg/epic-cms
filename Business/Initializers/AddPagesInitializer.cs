@@ -1,15 +1,15 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="AddPagesInitializer.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
+using System.Globalization; // CultureInfo
 using AlloyTraining.Models.Pages; // StandardPage, ProductPage
-using EPiServer; // IContentRepository
-using EPiServer.Core; // ContentReference, IContent
 using EPiServer.DataAccess; // SaveAction
 using EPiServer.Filters; // FilterSortOrder
 using EPiServer.Security; // AccessLevel
 using EPiServer.Web; // IBlockingFirstRequestInitializer, ISiteDefinitionRepository
-using Microsoft.AspNetCore.Http; // HttpContext
-using System.Linq; // CountAsync extension method
-using System.Threading.Tasks; // Task
-using System.Globalization; // CultureInfo
-using System; // ArgumentNullException
 
 namespace AlloyTraining.Business.Initializers
 {
@@ -39,8 +39,9 @@ namespace AlloyTraining.Business.Initializers
                 var firstSite = siteRepo.List().FirstOrDefault();
 
                 if (firstSite == null) // if no sites, give up running
-                    return Task.FromException(new ArgumentNullException(
-                        paramName: nameof(firstSite)));
+                {
+                    return Task.FromException(new ArgumentNullException(paramName: nameof(firstSite)));
+                }
 
                 startReference = firstSite.StartPage;
             }

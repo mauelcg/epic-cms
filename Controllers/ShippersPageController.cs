@@ -1,3 +1,9 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="ShippersPageController.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using AlloyTraining.Models.Pages;
 using AlloyTraining.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;

@@ -1,3 +1,9 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="SitePdfContentMediaResolver.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 public class CustomPdfContentMediaResolver : ContentMediaResolver
 {
     // Override the method that finds the first matching type for an extension
@@ -5,7 +11,7 @@ public class CustomPdfContentMediaResolver : ContentMediaResolver
     {
         var type = base.GetFirstMatching(extension);
 
-        if(extension.Equals("pdf", StringComparison.OrdinalIgnoreCase) && type != null && type.FullName.StartsWith("EPiServer.PdfPreview"))
+        if (extension.Equals("pdf", StringComparison.OrdinalIgnoreCase) && type != null && type.FullName.StartsWith("EPiServer.PdfPreview"))
         // if(extension.Equals("pdf", StringComparison.OrdinalIgnoreCase))
         {
             // Return the custom PDF type instead of the default one

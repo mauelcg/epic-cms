@@ -1,3 +1,9 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="MiscellaneousPage.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using System.ComponentModel.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web;

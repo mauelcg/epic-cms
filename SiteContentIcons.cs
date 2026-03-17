@@ -1,4 +1,8 @@
-using EPiServer.DataAnnotations; // ImageUrlAttribute
+// -------------------------------------------------------------------------------------------------
+// <copyright file="SiteContentIcons.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
 
 namespace AlloyTraining
 {
@@ -14,7 +18,7 @@ namespace AlloyTraining
     public class SitePageIconAttribute : ImageUrlAttribute
     {
         public SitePageIconAttribute()
-            : base("~/contenticons/epi-edu-icon-page.jpg") {}
+            : base("~/contenticons/epi-edu-icon-page.jpg") { }
     }
 
     public class SiteBlockIconAttribute : ImageUrlAttribute

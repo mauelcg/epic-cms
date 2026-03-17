@@ -1,5 +1,11 @@
-using EPiServer.Validation;
+// -------------------------------------------------------------------------------------------------
+// <copyright file="EmployeePageValidator.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using AlloyTraining.Models.Pages;
+using EPiServer.Validation;
 
 namespace AlloyTraining.Business.Validation;
 

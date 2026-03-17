@@ -1,10 +1,16 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="NewsPage.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using System.ComponentModel.DataAnnotations;
+using AlloyTraining.Models.Entities;
+using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
 using EPiServer.Filters;
 using EPiServer.PlugIn;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.Shell.ObjectEditing.EditorDescriptors;
-using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
-using AlloyTraining.Models.Entities;
 
 namespace AlloyTraining.Models.Pages
 {
@@ -42,8 +48,7 @@ namespace AlloyTraining.Models.Pages
         }
 
         [PropertyDefinitionTypePlugIn(DisplayName = "List of people i.e. IList<Person>",
-        Description = "An editable list of Person instances."
-        )]
+        Description = "An editable list of Person instances.")]
         public class PropertyPersonList : PropertyList<Person>
         {
         }

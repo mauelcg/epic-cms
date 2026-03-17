@@ -1,9 +1,14 @@
-using Microsoft.AspNetCore.Identity;
-using EPiServer.Cms.UI.AspNetIdentity;
-using Microsoft.AspNetCore.Mvc;
-using AlloyTraining.Models.Pages;
+// -------------------------------------------------------------------------------------------------
+// <copyright file="AuthenticationController.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using AlloyTraining.Controllers;
+using AlloyTraining.Models.Pages;
+using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Shell.Security;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AlloyTraining.Features.Authentication
 {
@@ -21,16 +26,10 @@ namespace AlloyTraining.Features.Authentication
         }
 
         [HttpGet("/auth")]
-        public ActionResult Index()
-        {
-            return User.Identity.IsAuthenticated ? Redirect("/") : Redirect("/auth/login");
-        }
+        public ActionResult Index() => User.Identity.IsAuthenticated ? Redirect("/") : Redirect("/auth/login");
 
         [HttpGet("/auth/login")]
-        public ActionResult Login()
-        {
-            return View("~/Features/Authentication/Login.cshtml");
-        }
+        public ActionResult Login() => View("~/Features/Authentication/Login.cshtml");
 
         [HttpPost("/auth/login")]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -52,10 +51,7 @@ namespace AlloyTraining.Features.Authentication
         }
 
         [HttpGet("/auth/register")]
-        public ActionResult Register()
-        {
-            return View("~/Features/Authentication/Register.cshtml");
-        }
+        public ActionResult Register() => View("~/Features/Authentication/Register.cshtml");
 
         [HttpPost("/auth/register")]
         public async Task<IActionResult> Register(RegisterViewModel model)

@@ -1,3 +1,9 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="CategoriesPageController.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using AlloyTraining.Controllers;
 using AlloyTraining.Features.NorthwindConnection.Entities;
 using AlloyTraining.Models.ViewModels;
@@ -26,13 +32,13 @@ public class CategoriesPageController : PageControllerBase<CategoriesPage>
         // we do not need to track changes or
         foreach (Entities.Category category in _db.Categories.AsNoTracking().ToList())
         {
-           string name = category.CategoryName;
+            string name = category.CategoryName;
 
-           string url = _urlResolver.GetVirtualPathForNonContent(
-            partialRoutedObject: category, language: null, virtualPathArguments: null
-           ).GetUrl();
+            string url = _urlResolver.GetVirtualPathForNonContent(
+             partialRoutedObject: category, language: null, virtualPathArguments: null)
+            .GetUrl();
 
-           model.CurrentPage.CategoryLinks.Add(name, url);
+            model.CurrentPage.CategoryLinks.Add(name, url);
         }
 
         return View("~/Features/NorthwindConnection/CategoriesPage.cshtml", model);

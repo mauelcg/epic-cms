@@ -1,3 +1,9 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="Startup.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using AlloyTraining.Features.NorthwindConnection;
 using AlloyTraining.Features.NorthwindConnection.Entities;
 using EPiServer.Cms.Shell;
@@ -62,8 +68,7 @@ public class Startup
                 options.UseLazyLoadingProxies(false);
                 options.UseSqlServer(
                     _configuration.GetConnectionString("NorthwindDB"),
-                    sqlOptions => sqlOptions.EnableRetryOnFailure()
-                );
+                    sqlOptions => sqlOptions.EnableRetryOnFailure());
             });
 
         services.AddContentDeliveryApi(options =>
@@ -88,6 +93,7 @@ public class Startup
         {
             app.UseDeveloperExceptionPage();
         }
+
         // Dynamic files caching (additional)
         app.UseResponseCaching();
         app.Use(async (context, next) =>
@@ -112,8 +118,7 @@ public class Startup
                     ctx.Context.Response.Headers[HeaderNames.CacheControl] = $"public,max-age={seconds}";
                     // For improvements (e.g. busting unversioned files) see here:http://madkristensen.net/post/cache-busting-in-aspnet
                 }
-            }
-        );
+            });
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();

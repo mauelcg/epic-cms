@@ -1,3 +1,8 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="ProductPage.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
 
 using System.ComponentModel.DataAnnotations;
 using AlloyTraining.Business.Factories;
@@ -12,10 +17,7 @@ namespace AlloyTraining.Models.Pages;
 [SiteCommerceIcon]
 public class ProductPage : StandardPage
 {
-    public override void SetDefaultValues(ContentType contentType)
-    {
-        base.SetDefaultValues(contentType);
-    }
+    public override void SetDefaultValues(ContentType contentType) => base.SetDefaultValues(contentType);
 
     [SelectOne(SelectionFactoryType = typeof(ThemeSelectionFactory))]
     [Display(Name = "Color theme", GroupName = SystemTabNames.Content, Order = 310)]

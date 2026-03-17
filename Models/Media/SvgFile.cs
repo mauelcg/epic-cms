@@ -1,5 +1,9 @@
-using EPiServer.Core;
-using EPiServer.DataAnnotations;
+// -------------------------------------------------------------------------------------------------
+// <copyright file="SvgFile.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using EPiServer.Framework.Blobs;
 using EPiServer.Framework.DataAnnotations;
 
@@ -9,6 +13,6 @@ namespace AlloyTraining.Models.Media
     [MediaDescriptor(ExtensionString = "svg")]
     public class SvgFile : ImageData
     {
-        public override Blob Thumbnail { get => base.BinaryData; }
+        public override Blob Thumbnail { get => this.BinaryData; }
     }
 }

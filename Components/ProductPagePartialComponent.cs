@@ -1,7 +1,8 @@
-using AlloyTraining.Models.Pages;
-using AlloyTraining.Models.ViewModels;
-using EPiServer.Web.Mvc;
-using Microsoft.AspNetCore.Mvc;
+// -------------------------------------------------------------------------------------------------
+// <copyright file="ProductPagePartialComponent.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
 
 namespace AlloyTraining.Components
 {

@@ -1,9 +1,12 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="CategoryController.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using AlloyTraining.Models.ViewModels;
 using EPiServer.Web;
 using Microsoft.AspNetCore.Mvc;
-using EPiServer.Core.Routing;
-using EPiServer.Find.Helpers;
-using EPiServer.Web.Routing;
 
 namespace AlloyTraining.Features.NorthwindConnection;
 // by implementing IRenderTemplate<Category>, this becomes

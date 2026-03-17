@@ -1,3 +1,9 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="LayoutExtensions.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using AlloyTraining.Models.Pages;
 using EPiServer.ServiceLocation;
 using Microsoft.AspNetCore.Mvc.Rendering; // IHtmlHelper

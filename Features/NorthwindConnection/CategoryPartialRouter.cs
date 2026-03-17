@@ -1,8 +1,13 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="CategoryPartialRouter.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
+using AlloyTraining.Features.NorthwindConnection.Entities;
 using EPiServer.Core.Routing;
 using EPiServer.Core.Routing.Pipeline;
-using AlloyTraining.Features.NorthwindConnection.Entities;
 using Microsoft.EntityFrameworkCore;
-using EPiServer.Web.Routing;
 
 namespace AlloyTraining.Features.NorthwindConnection
 {

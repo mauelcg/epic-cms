@@ -1,3 +1,9 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="ShipperPage.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using System.ComponentModel.DataAnnotations;
 using EPiServer.Framework.DataAnnotations;
 
@@ -16,4 +22,3 @@ public class ShipperPage : PageData
     // properties to enrich the imported data
     public virtual string CostPerUnit { get; set; }
 }
-

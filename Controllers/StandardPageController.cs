@@ -1,3 +1,9 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="StandardPageController.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using AlloyTraining.Models.Pages;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +15,6 @@ namespace AlloyTraining.Controllers
         {
         }
 
-        public ActionResult Index(StandardPage currentPage)
-        {
-            return View(CreatePageViewModel(currentPage));
-        }
+        public ActionResult Index(StandardPage currentPage) => View(CreatePageViewModel(currentPage));
     }
 }

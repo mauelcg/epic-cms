@@ -1,5 +1,10 @@
+// -------------------------------------------------------------------------------------------------
+// <copyright file="ThemeSelectionFactory.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
+
 using EPiServer.Shell.ObjectEditing;
-using System.Collections.Generic;
 
 namespace AlloyTraining.Business.Factories
 {

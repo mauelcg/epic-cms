@@ -1,4 +1,8 @@
-﻿using AlloyTraining.Features.NorthwindConnection.Entities;
+﻿// -------------------------------------------------------------------------------------------------
+// <copyright file="OrderDetail.cs" company="Mark Lemuel Genita">
+// Copyright (c) Mark Lemuel Genita. All rights reserved.
+// </copyright>
+// -------------------------------------------------------------------------------------------------
 
 namespace AlloyTraining.Features.NorthwindConnection.Entities;
 
