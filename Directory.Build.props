@@ -5,6 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.507" PrivateAssets="all" />
-    <AdditionalFiles Include="$(SolutionDir)stylecop.json" Link="stylecop.json" />
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json" Link="stylecop.json" />
   </ItemGroup>
 </Project>
