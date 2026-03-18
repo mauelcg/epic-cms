@@ -34,6 +34,11 @@ namespace AlloyTraining.Features.Authentication
         [HttpPost("/auth/login")]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return View("~/Features/Authentication/Login.cshtml", model);
+            }
+
             if (!ModelState.IsValid)
             {
                 return View("~/Features/Authentication/Login.cshtml", model);

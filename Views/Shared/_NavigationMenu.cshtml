@@ -1,18 +1,15 @@
-@using Azure.Core
-@using EPiServer.Core
 @using AlloyTraining.Business.ExtensionMethods
-@using AlloyTraining.Models.ViewModels
 @using AlloyTraining.Models.Pages
-@using Microsoft.AspNetCore.Mvc.Razor
-@using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http
+@using AlloyTraining.Models.ViewModels
+@using EPiServer.Cms.UI.AspNetIdentity;
 @model IPageViewmodel<SitePageData>
 @{
-    HelperResult ItemTemplate(HtmlHelpers.MenuItem item)
+    Microsoft.AspNetCore.Mvc.Razor.HelperResult ItemTemplate(HtmlHelpers.MenuItem item)
     {
         <li class="nav-item">
             @Html.PageLink(item.Page, null, new { @class = "nav-link" + (item.Selected ? " active" : null) })
         </li>
-        return new HelperResult(w => Task.CompletedTask);
+        return new Microsoft.AspNetCore.Mvc.Razor.HelperResult(w => Task.CompletedTask);
     }
 }
 <div class="alloyMenu">
