@@ -10,7 +10,6 @@ using EPiServer.Labs.GridView;
 using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
-using Microsoft.Net.Http.Headers;
 
 namespace AlloyTraining;
 
@@ -42,19 +41,11 @@ public class Startup
             options.PreferredUrlFormatRedirection = HttpRedirect.Permanent; // Can be None, Temporary, and Permanent
         });
 
-        // Replace the default ContentMediaResolver with site created type
-        // services.AddSingleton<ContentMediaResolver, CustomPdfContentMediaResolver>();
-        // For partial routing
-        // services.AddSingleton<IPartialRouter, CategoryPartialRouter>();
-        // services.AddHttpContextAccessor();
-        // For EPiServer CMS
         services
             .AddCmsAspNetIdentity<ApplicationUser>()
             .AddCms()
-            .AddFind() // Enable Search and Navigation
             .AddAdminUserRegistration()
             .AddEmbeddedLocalization<Startup>()
-            .AddResponseCaching() // For dynamic content
             .AddGridView(options =>
             {
                 options.IsViewEnabled = true;
@@ -69,11 +60,6 @@ public class Startup
         {
             options.MaximumSearchResults = 10;
         });
-
-        // services.AddContentDeliveryApi(options =>
-        // {
-        //     options.EnableCors = true;
-        // });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -83,34 +69,10 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
-        // Dynamic files caching (additional)
-        app.UseResponseCaching();
-        app.Use(async (context, next) =>
-        {
-            context.Response.GetTypedHeaders().CacheControl = new CacheControlHeaderValue()
-            {
-                Public = true,
-                MaxAge = TimeSpan.FromHours(2)
-            };
-            context.Response.Headers[HeaderNames.Vary] = new string[] { "Accept-Encoding" };
-            await next();
-        });
-        // Static files caching
-        app.UseStaticFiles(
-            new StaticFileOptions
-            {
-                OnPrepareResponse = ctx =>
-                {
-                    // Caching duration here
-                    // Seconds per minute * Minutes per hour * Hours per day * Days per year
-                    const int seconds = 60 * 60 * 24 * 365;
-                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = $"public,max-age={seconds}";
-                    // For improvements (e.g. busting unversioned files) see here:http://madkristensen.net/post/cache-busting-in-aspnet
-                }
-            });
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
+
         // Required for Content Search API
         app.UseCors();
 
